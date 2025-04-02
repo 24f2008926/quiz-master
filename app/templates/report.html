@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Report{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 rounded shadow-lg" style="background-color: #4B0082; color: white;">
+    <h2 class="text-center mb-4 font-weight-bold">📊 {% if is_admin %}Admin{% else %}Your{% endif %} Report</h2>
+
+    <!-- Grid Container for Charts -->
+    <div class="chart-container">
+        {% for chart in charts %}
+        <div class="chart-item">
+            <img src="data:image/png;base64,{{ chart }}" class="img-fluid rounded border border-warning p-2" alt="Chart">
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-4" style="padding-top: 50px;">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-warning font-weight-bold text-dark">⬅ Back to Dashboard</a>
+    </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    .chart-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+        gap: 20px; /* Spacing between charts */
+        justify-content: center;
+    }
+    
+    .chart-item img {
+        width: 100%; /* Make charts responsive */
+        max-width: 1500px; /* Prevent oversized images */
+        height: auto;
+    }
+</style>
+{% endblock %}
+

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Search Results - Quiz Master{% endblock %}
+{% block content %}
+<div class="container" >
+    <h2>Search Results for "{{ query }}"</h2>
+
+    {% if results.subjects or results.chapters or results.quizzes %}
+        {% if results.subjects %}
+            <h3>Subjects</h3>
+            <ul>
+                {% for subject in results.subjects %}
+                <div style="padding-top: 25px; padding-bottom: 25px;">
+                    <li >
+                        <a href="{{ url_for('view_subject', subject_id=subject.QZ_SUB_ID) }}" class="btn">
+                            {{ subject.QZ_SUB_NAME }}
+                        </a>
+                    </li>
+                </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if results.chapters %}
+            <h3>Chapters</h3>
+            <ul>
+                {% for chapter in results.chapters %}
+                <div style="padding-top: 25px; padding-bottom: 25px;">
+                    <li>
+                        <a href="{{ url_for('view_chapter', chapter_id=chapter.QZ_CHP_CHAP_ID) }}" class="btn">
+                            {{ chapter.QZ_CHP_NAME }}
+                        </a>
+                    </li>
+                </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if results.quizzes %}
+            <h3>Quizzes</h3>
+            <ul>
+                {% for quiz in results.quizzes %}
+                <div style="padding-top: 25px; padding-bottom: 25px;">
+                    <li>
+                        {% if role == 'admin' %}
+                            <a href="{{ url_for('view_quiz', quiz_id=quiz.QZ_QIZ_QUIZ_ID) }}" class="btn">
+                                {{ quiz.QZ_QIZ_QUIZ_NAME }}
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('take_quiz', quiz_id=quiz.QZ_QIZ_QUIZ_ID) }}" class="btn">
+                                {{ quiz.QZ_QIZ_QUIZ_NAME }}
+                            </a>
+                        {% endif %}
+
+                    </li>
+                </div>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% else %}
+        <p>No results found for "{{ query }}". Try a different search term.</p>
+    {% endif %}
+</div>
+{% endblock %}

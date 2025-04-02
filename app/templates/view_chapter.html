@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ chapter.QZ_CHP_NAME }} - Quizzes{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h2>{{ chapter.QZ_CHP_NAME }}</h2>
+    <p>{{ chapter.QZ_CHP_DESC }}</p>
+
+    <h3>Quizzes</h3>
+    <ul>
+        {% for quiz in quizzes %}
+        <div class="tile">
+            <h3>{{ quiz.QZ_QIZ_QUIZ_NAME }}</h3>
+            <p>{{ quiz.QZ_QIZ_DESC }}</p>
+
+            {% if session['role'] == 'user' %}
+                <a href="{{ url_for('take_quiz', quiz_id=quiz.QZ_QIZ_QUIZ_ID) }}" class="btn">Take Quiz</a>
+                <a href="{{ url_for('past_results',quiz_id=quiz.QZ_QIZ_QUIZ_ID) }}" class="btn btn-secondary">View Past Results</a>
+            {% else %}
+                <a href="{{ url_for('view_quiz', quiz_id=quiz.QZ_QIZ_QUIZ_ID) }}" class="btn">View Quiz</a>
+
+                <form action="{{ url_for('delete_quiz', quiz_id=quiz.QZ_QIZ_QUIZ_ID) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        {% if not quizzes %}
+        <p>No quizzes available for this chapter.</p>
+        {% endif %}
+    </ul>
+
+    {% if session['role'] == 'admin' %}
+        <a href="{{ url_for('add_quiz', chapter_id=chapter.QZ_CHP_CHAP_ID) }}" class="btn btn-primary">+ Add Quiz</a>
+    {% endif %}
+
+
+    
+</div>
+
+{% endblock %}

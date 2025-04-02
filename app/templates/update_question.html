@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Update Question{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h2>Update Question</h2>
+    <form method="POST">
+        <label for="question_text">Question:</label>
+        <input type="text" name="question_text" value="{{ question.QZ_QTN_QUZ_DET }}" required>
+
+        <label for="option_1">Option A:</label>
+        <input type="text" name="option_1" value="{{ question.QZ_QTN_QTN_OPT_1 }}" required>
+
+        <label for="option_2">Option B:</label>
+        <input type="text" name="option_2" value="{{ question.QZ_QTN_QTN_OPT_2 }}" required>
+
+        <label for="option_3">Option C:</label>
+        <input type="text" name="option_3" value="{{ question.QZ_QTN_QTN_OPT_3 }}" required>
+
+        <label for="option_4">Option D:</label>
+        <input type="text" name="option_4" value="{{ question.QZ_QTN_QTN_OPT_4 }}" required>
+
+        <label for="correct_option">Correct Option:</label>
+        <input type="text" name="correct_option" value="{{ question.QZ_QTN_QTN_COR_OP }}" required>
+
+        <button type="submit" class="btn btn-success">Update Question</button>
+    </form>
+</div>
+
+{% endblock %}

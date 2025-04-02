@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Past Quiz Results{% endblock %}
+
+{% block content %}
+<div class="container mt-4 p-4 rounded shadow-lg" style="background-color: #4B0082; color: white;">
+    <h2 class="text-center mb-4 font-weight-bold">📊 Past Quiz Results</h2>
+
+    {% if results %}
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" style="border: 3px solid #FFD700;">
+                <thead class="thead-dark" style="background-color: #FFD700; color: #4B0082; font-size: 1.3rem; font-weight: bold; padding-bottom: 5px;">
+                    <tr>
+                        <th style="padding: 15px;">📖 Quiz Name</th>
+                        <th style="padding: 15px;">✅ Score</th>
+                        <th style="padding: 15px;">✔️ Correct</th>
+                        <th style="padding: 15px;">❌ Incorrect</th>
+                        <th style="padding: 15px;">📅 Date</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: #663399; color: white; font-size: 1.1rem;">
+                    {% for result in results %}
+                    <tr style="border: 2px solid white;">
+                        <td style="padding: 12px; font-weight: bold;">{{ result.quiz.QZ_QIZ_QUIZ_NAME }}</td>
+                        <td style="padding: 12px;">{{ result.QZ_ATM_SCORE }}</td>
+                        <td style="padding: 12px; color: lightgreen; font-weight: bold;">{{ result.QZ_ATM_CO }}</td>
+                        <td style="padding: 12px; color: red; font-weight: bold;">{{ result.QZ_ATM_INCO }}</td>
+                        <td style="padding: 12px;">{{ result.QZ_ATM_DATE.strftime('%d %b %Y, %I:%M %p') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center text-light">You haven't taken any quizzes yet.</p>
+    {% endif %}
+
+    <!-- Back Button -->
+    <div class="text-center mt-4" style="padding-top: 100px;">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-warning font-weight-bold text-dark px-5 py-2" style="font-size: 1.1rem; border-radius: 8px;">⬅ Back to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

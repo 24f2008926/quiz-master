@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>{% block title %}Quiz Master{% endblock %}</title>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="{{ url_for('home') }}" class="quiz-logo">Quiz Master</a>
+            <div class="nav-links">
+                {% if 'username' in session %}
+                    <a href="{{ url_for('dashboard') }}" class="btn">Dashboard</a>
+                    <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+                    <a href="{{ url_for('report') }}" class="btn">report</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
+                {% endif %}
+            </div>
+            <form action="{{ url_for('search') }}" method="GET" class="search-form">
+                <input type="text" name="query" class="search-input" placeholder="Search..." required>
+            </form>
+        </div>
+    </nav>
+
+
+    
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
+

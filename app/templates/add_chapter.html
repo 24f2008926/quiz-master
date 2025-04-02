@@ -1,1 +1,19 @@
-
+{% extends "base.html" %}
+{% block title %}Add Chapter - Quiz Master{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Add Chapter</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label><strong>
+            Chapter Name : </strong></label>
+            <input type="text" name="chapter_name" required style="width: 350px;">
+        </div>
+        <div class="form-group">
+            <label>Chapter Description</label>
+            <textarea name="chapter_description" required></textarea>
+        </div>
+        <button type="submit">Add Chapter</button>
+    </form>
+</div>
+{% endblock %}

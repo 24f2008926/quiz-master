@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Add Question to Quiz</h2>
+<form method="POST">
+    <div class="ques">
+
+    
+    <label>Question Text:</label>
+    <input type="text" name="question_text" required>
+
+    <label>Option 1:</label>
+    <input type="text" name="option_1" required>
+
+    <label>Option 2:</label>
+    <input type="text" name="option_2" required>
+
+    <label>Option 3:</label>
+    <input type="text" name="option_3" required>
+
+    <label>Option 4:</label>
+    <input type="text" name="option_4" required>
+
+    <label>Correct Answer:</label>
+    <select name="correct_option">
+        <option value="option_1">Option 1</option>
+        <option value="option_2">Option 2</option>
+        <option value="option_3">Option 3</option>
+        <option value="option_4">Option 4</option>
+    </select>
+
+    <button type="submit">Add Question</button>
+</div>
+</form>
+{% endblock %}

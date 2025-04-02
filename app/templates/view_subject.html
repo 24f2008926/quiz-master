@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ subject.QZ_SUB_NAME }} - Quiz Master{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{ subject.QZ_SUB_NAME }}</h2>
+    <p>{{ subject.QZ_SUB_DESC }}</p>
+
+    <h3>Chapters</h3>
+    <ul>
+        {% for chapter in chapters %}
+        <div class="tile">
+            <h3>{{ chapter.QZ_CHP_NAME }}</h3>
+            <p>{{ chapter.QZ_CHP_DESC }}</p>
+            <a href="{{ url_for('view_chapter', chapter_id=chapter.QZ_CHP_CHAP_ID) }}" class="btn">View</a>
+            
+            {% if session['role'] == 'admin' %}
+            <form action="{{ url_for('delete_chapter', chapter_id=chapter.QZ_CHP_CHAP_ID) }}" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </ul>
+
+    {% if session['role'] == 'admin' %}
+        <a href="{{ url_for('add_chapter', subject_id=subject.QZ_SUB_ID) }}" class="btn">+ Add Chapter</a>
+    {% endif %}
+</div>
+{% endblock %}

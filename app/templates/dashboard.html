@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Quiz Master{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Subjects</h2>
+    
+    <div class="subjects">
+        {% for subject in subjects %}
+        <div class="tile">
+            
+            <h3>{{ subject.QZ_SUB_NAME }}</h3>
+            <p>{{ subject.QZ_SUB_DESC }}</p>
+            <a href="{{ url_for('view_subject', subject_id=subject.QZ_SUB_ID) }}" class="btn">View</a>
+
+            {% if session['role'] == 'admin' %}
+            <form action="{{ url_for('delete_subject', subject_id=subject.QZ_SUB_ID) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if session['role'] == 'admin' %}
+        <a href="{{ url_for('add_subject') }}" class="btn">+ Add Subject</a>
+    {% endif %}
+</div>
+{% endblock %}

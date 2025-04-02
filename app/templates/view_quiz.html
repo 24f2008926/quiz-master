@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Manage Quiz - {{ quiz.QZ_QIZ_QUIZ_NAME }}{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h2>Manage Quiz: {{ quiz.QZ_QIZ_QUIZ_NAME }}</h2>
+    <p>{{ quiz.QZ_QIZ_DESC }}</p>
+
+    <h3>Questions</h3>
+    <ul>
+        {% for question in questions %}
+        <div class="tile">
+            <p><strong>Question:</strong> {{ question.QZ_QTN_QUZ_DET }}</p>
+            <ul>
+                <li>A: {{ question.QZ_QTN_QTN_OPT_1 }}</li>
+                <li>B: {{ question.QZ_QTN_QTN_OPT_2 }}</li>
+                <li>C: {{ question.QZ_QTN_QTN_OPT_3 }}</li>
+                <li>D: {{ question.QZ_QTN_QTN_OPT_4 }}</li>
+            </ul>
+            <p><strong>Correct Answer:</strong> {{ question.QZ_QTN_QTN_COR_OP }}</p>
+
+            <form action="{{ url_for('delete_question', quiz_id=quiz.QZ_QIZ_QUIZ_ID, question_id=question.QZ_QTN_ID) }}" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <a href="{{ url_for('update_question', quiz_id=quiz.QZ_QIZ_QUIZ_ID, question_id=question.QZ_QTN_ID) }}" class="btn btn-warning">Update</a>
+        </div>
+        {% endfor %}
+
+        {% if not questions %}
+        <p>No questions available for this quiz.</p>
+        {% endif %}
+    </ul>
+
+    <a href="{{ url_for('add_question', quiz_id=quiz.QZ_QIZ_QUIZ_ID) }}" class="btn btn-primary">+ Add Question</a>
+</div>
+
+{% endblock %}

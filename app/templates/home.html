@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Quiz Master{% endblock %}
+
+{% block content %}
+<div class="container" style="text-align: center;">
+    <h1>Welcome to Quiz Master</h1>
+    <p style="text-align:center;">Test your knowledge and improve your skills with our interactive quizzes!</p>
+    <img src="{{ url_for('static', filename='teacher.jpg') }}" alt="Quiz Illustration" class="image-banner">
+    
+    <a href="{{ url_for('login') }}" class="btn" style="align-content: center;">Login</a>
+    <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
+
+    
+    
+</div>
+{% endblock %}

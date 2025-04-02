@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+    <style>
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+        .quiz-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .timer {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 20px;
+        }
+        .question-tile {
+            border: 1px solid #8100fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #8E2DE2;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+            color: #fff;
+        }
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: rgb(158, 98, 197);
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            min-height: 50px;
+            word-wrap: break-word;
+            transition: background-color 0.3s, color 0.3s;
+            user-select: none;
+            gap: 10px;
+        }
+        
+
+        .option-label input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .option-label input[type="radio"]:checked {
+            accent-color: #00c853; 
+        }
+
+        .option-label:active {
+            transform: scale(0.95);
+        }
+    
+        .option-label:hover {
+            background-color: #e0e0e0;
+            color: black;
+        }
+    </style>
+    
+</head>
+
+<div class="quiz-container">
+    <h2 class="quiz-title">{{ quiz.QZ_QIZ_QUIZ_NAME }}</h2>
+
+    <div class="timer">
+        Time Left: <span id="timer">01:00</span>
+    </div>
+
+    <form id="quizForm" method="POST">
+        {% for question in questions %}
+        <div class="question-tile">
+            <h3 class="question-title">
+                {{ question.QZ_QTN_QUZ_DET }}
+            </h3>
+            <div class="options-container">
+                <label class="option-label">
+                    <input type="radio" name="question_{{ question.QZ_QTN_ID }}" value="option_1">
+                    {{ question.QZ_QTN_QTN_OPT_1 }}
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="question_{{ question.QZ_QTN_ID }}" value="option_2">
+                    {{ question.QZ_QTN_QTN_OPT_2 }}
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="question_{{ question.QZ_QTN_ID }}" value="option_3">
+                    {{ question.QZ_QTN_QTN_OPT_3 }}
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="question_{{ question.QZ_QTN_ID }}" value="option_4">
+                    {{ question.QZ_QTN_QTN_OPT_4 }}
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div class="submit-container">
+            <button type="submit" class="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+<script>
+    let timeLeft = 60;
+    let timerElement = document.getElementById("timer");
+
+    function updateTimer() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        timerElement.textContent = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        if (timeLeft > 0) {
+            timeLeft--;
+        } else {
+            document.getElementById("quizForm").submit(); 
+        }
+    }
+
+    setInterval(updateTimer, 1000); 
+</script>
+
+{% endblock %}
