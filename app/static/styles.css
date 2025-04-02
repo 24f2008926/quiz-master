@@ -1,1 +1,225 @@
+/* Modernized styles.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 85%;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    padding-right: 50px;
+}
+
+.navbar {
+    background-color: #221133;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.image-banner{
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    width: 1200px;
+    padding-left: 5px;
+    padding-right: 10px;
+    display: block;
+    margin: 10px auto;
+
+}
+.quiz {
+    font-size: 26px;
+    font-weight: bold;
+    color: #FFD700;
+    text-decoration: none;
+}
+.quiz-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons */
+.btn {
+    background: #FFD700;
+    color: #000;
+    padding: 12px 18px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    align-items: center ;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    background: #FFD700;
+    color: #000;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: #FFC107;
+}
+
+/* Tiles for subjects & quizzes */
+.tile {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.tile:hover {
+    transform: scale(1.02);
+}
+
+.banner-container {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically if needed */
+    height: 100px; /* Adjust height as needed */
+    border-radius: 5px;
+    
+}
+
+img {
+    max-width: 100%; /* Ensures it scales properly */
+    height: auto;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+}
+.ques{
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+    width: 1200px;
+    padding-left: 50px;
+    padding-right: 50px;
+    display: block;
+    margin: 10px auto;
+ }
+ .submit {
+    width: 120px;
+    display: block;
+    margin: auto; /* Centers horizontally */
+}
+
+
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links .btn {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-input {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 180px;
+}
+
+.search-btn {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.ano-btn{
+    display: block;
+    margin: 10px auto; /* Centers the button */
+    width: 120px; /* Adjust width as needed */
+}
+
 
