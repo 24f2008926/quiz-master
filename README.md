@@ -27,3 +27,5 @@ Quiz Master is a Flask-based web application for managing quizzes. It allows adm
 - **Libraries:** Flask-SQLAlchemy, Flask-WTF, Matplotlib
 
 
+## Notes
+This repository is also maintained on my personal GitHub account for portfolio and interview purposes: https://github.com/ggokuldas06/Quiz-master
